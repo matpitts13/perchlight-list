@@ -4,6 +4,7 @@ name: CI
 # for main and pull requests, skips docs-only changes, and cancels an older
 # run of the same branch when a newer push arrives.
 on:
+  workflow_dispatch: # a Run workflow button in the Actions tab
   push:
     branches: [main]
     paths-ignore: ["**.md", "docs/**", "LICENSE"]
