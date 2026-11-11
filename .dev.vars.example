@@ -1,0 +1,31 @@
+# Copy to .dev.vars for local development (`npm run dev`). Never commit .dev.vars.
+# In production, set each one with:  npx wrangler secret put <NAME>
+# You only need the ones for the email service you use (MAIL_PROVIDER).
+
+# Any long random string. Used to hash IP addresses for the signup rate limit.
+IP_SALT=
+
+# Turnstile secret key (Cloudflare dashboard -> Turnstile). Leave empty to turn the bot check off.
+TURNSTILE_SECRET_KEY=
+
+# --- Resend ---
+RESEND_API_KEY=
+# Signing secret of your Resend webhook (starts with whsec_)
+RESEND_WEBHOOK_SECRET=
+
+# --- Amazon SES --- (an IAM user allowed ses:SendEmail and ses:SendBulkEmail)
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+# The ARN of the SNS topic your SES bounce/complaint notifications go to
+SES_SNS_TOPIC_ARN=
+
+# --- Mailgun ---
+MAILGUN_API_KEY=
+# Settings -> Webhooks -> HTTP webhook signing key (not the API key)
+MAILGUN_WEBHOOK_SIGNING_KEY=
+
+# --- Postmark ---
+POSTMARK_SERVER_TOKEN=
+# Put these in the webhook URL: https://USER:PASSWORD@your.site/api/webhooks/postmark
+POSTMARK_WEBHOOK_USER=
+POSTMARK_WEBHOOK_PASSWORD=

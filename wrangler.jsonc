@@ -1,0 +1,61 @@
+// perchlight-list: Worker + static pages + D1.
+// Secrets are never set here. Locally they go in .dev.vars (see .dev.vars.example);
+// in production: npx wrangler secret put <NAME>   (the README lists them per email service)
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "perchlight-list",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-01",
+
+  // The pages in public/ are served as-is; only /api/* runs the Worker.
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "perchlight-list",
+      "migrations_dir": "migrations"
+    }
+  ],
+
+  // Every minute: send the next announcement emails and any confirmation
+  // emails that couldn't be sent at signup.
+  "triggers": { "crons": ["* * * * *"] },
+
+  "vars": {
+    "LIST_NAME": "My mailing list",
+    "SITE_URL": "https://example.com",
+    "MAIL_FROM": "My Site <hello@example.com>",
+    "MAIL_POSTAL_ADDRESS": "",
+    "UNSUBSCRIBE_MAILTO": "",
+
+    // resend | ses | mailgun | postmark | cloudflare
+    "MAIL_PROVIDER": "resend",
+
+    // Speed. "standard" sends one email per request (safest; works on the
+    // Workers Free plan at the defaults). "bulk" uses the service's batch
+    // feature and needs Workers Paid for big lists. See the README.
+    "SEND_MODE": "standard",
+    "EMAILS_PER_RUN": "20",
+    "MAX_PARALLEL": "4",
+    "REQUESTS_PER_SECOND": "2",
+    "DAILY_SEND_LIMIT": "100",
+
+    // Amazon SES
+    "AWS_REGION": "",
+    "SES_CONFIGURATION_SET": "",
+    // Mailgun: your sending domain, and "us" or "eu"
+    "MAILGUN_DOMAIN": "",
+    "MAILGUN_REGION": "us",
+    // Postmark: the broadcast stream's ID, and who manages unsubscribes there
+    "POSTMARK_STREAM": "broadcast",
+    "POSTMARK_UNSUBSCRIBE": "postmark"
+  }
+
+  // Using Cloudflare Email Service? Set MAIL_PROVIDER to "cloudflare" and add:
+  // "send_email": [{ "name": "EMAIL" }]
+}

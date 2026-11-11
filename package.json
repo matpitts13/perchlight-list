@@ -1,0 +1,22 @@
+{
+  "name": "perchlight-list",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A free, self-hosted mailing list for Cloudflare Workers + D1: double opt-in signups, spam blocking, and announcement emails.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler d1 migrations apply DB --remote && wrangler deploy",
+    "test": "vitest run",
+    "update-blocklist": "node scripts/update-blocklist.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-plugin": "^1.6.1",
+    "vitest": "^5.1.0",
+    "wrangler": "^4.159.0"
+  }
+}

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Join the mailing list</title>
+<link rel="stylesheet" href="/list/styles.css">
+</head>
+<body>
+<main>
+<h1>Join the mailing list</h1>
+<p>An example signup form for perchlight-list. Copy the form into your own site.</p>
+<form method="post" action="/api/subscribe">
+  <label for="email">Email address</label>
+  <input id="email" name="email" type="email" required autocomplete="email">
+  <!-- Honeypot: hidden from people, filled in by bots. Keep it. -->
+  <div class="hp" aria-hidden="true">
+    <label for="website">Leave this empty</label>
+    <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+  </div>
+  <input type="hidden" name="source" value="example">
+  <!-- Turnstile (optional): add the widget here and set TURNSTILE_SECRET_KEY.
+  <div class="cf-turnstile" data-sitekey="YOUR_SITE_KEY"></div>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  -->
+  <button type="submit">Join</button>
+</form>
+<p class="muted">We'll email you a link to confirm. Unsubscribe any time.</p>
+</main>
+</body>
+</html>
