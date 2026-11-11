@@ -14,6 +14,22 @@
   "engines": {
     "node": ">=22"
   },
+  "cloudflare": {
+    "bindings": {
+      "IP_SALT": { "description": "Required. Any long random string, e.g. from `openssl rand -hex 32`. Hashes IP addresses for the signup rate limit." },
+      "TURNSTILE_SECRET_KEY": { "description": "Optional. Your Turnstile secret key (Cloudflare dashboard → Turnstile). Leave empty to turn the bot check off." },
+      "RESEND_API_KEY": { "description": "**Resend only.** A sending-access API key. Leave empty for other services." },
+      "RESEND_WEBHOOK_SECRET": { "description": "**Resend only.** Your Resend webhook's signing secret (starts with `whsec_`)." },
+      "AWS_ACCESS_KEY_ID": { "description": "**Amazon SES only.** An IAM user allowed `ses:SendEmail` and `ses:SendBulkEmail`." },
+      "AWS_SECRET_ACCESS_KEY": { "description": "**Amazon SES only.** That IAM user's secret key." },
+      "SES_SNS_TOPIC_ARN": { "description": "**Amazon SES only.** ARN of the SNS topic your bounce and complaint notifications go to." },
+      "MAILGUN_API_KEY": { "description": "**Mailgun only.** Your Mailgun API key." },
+      "MAILGUN_WEBHOOK_SIGNING_KEY": { "description": "**Mailgun only.** Settings → Webhooks → HTTP webhook signing key (not the API key)." },
+      "POSTMARK_SERVER_TOKEN": { "description": "**Postmark only.** Your server's API token." },
+      "POSTMARK_WEBHOOK_USER": { "description": "**Postmark only.** A user name to put in your webhook URL." },
+      "POSTMARK_WEBHOOK_PASSWORD": { "description": "**Postmark only.** A password to put in your webhook URL." }
+    }
+  },
   "devDependencies": {
     "@cloudflare/vitest-plugin": "^1.6.1",
     "vitest": "^5.1.0",

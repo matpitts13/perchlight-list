@@ -3,6 +3,8 @@
 [![CI](https://github.com/matpitts13/perchlight-list/actions/workflows/ci.yml/badge.svg)](https://github.com/matpitts13/perchlight-list/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/matpitts13/perchlight-list)
+
 **A free, self-hosted mailing list that runs on your own Cloudflare account.** It handles signups with email confirmation, keeps out bots and throwaway addresses, and sends announcements through the email service you already use: Resend, Amazon SES, Mailgun, Postmark or Cloudflare Email. There's no subscription and no per-subscriber fee, and your list never leaves your account.
 
 It runs on Cloudflare Workers and D1. A small list fits inside Cloudflare's free plan and your email service's free tier. A large one can send hundreds of thousands of emails an hour on Workers Paid ($5/month).
@@ -41,6 +43,12 @@ Part of [Perchlight](https://github.com/matpitts13/perchlight), a free toolkit f
 | **Cloudflare Email** (beta) | yes | — | no, marked unknown | not offered by the service |
 
 ## Set up (about 10 minutes)
+
+### One click
+
+Click **Deploy to Cloudflare** above. Cloudflare copies this repo to your GitHub account, creates the D1 database, applies the migrations and deploys the Worker. Its setup page asks for the secrets: fill in `IP_SALT`, plus the ones for your email service, and leave the rest empty. Then edit `vars` in `wrangler.jsonc` in your copy (steps 1 and 3 below say which) and connect bounces (step 4). Every push to your copy redeploys it.
+
+### By hand
 
 You need Node 22+ and a Cloudflare account.
 
